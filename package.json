@@ -27,6 +27,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./apps/api/test/jest-e2e.json",
     "commit": "cz",
+    "commit:log": "node scripts/commit-with-changelog.js",
     "changelog": "standard-version --no-verify",
     "changelog:minor": "standard-version --release-as minor --no-verify",
     "changelog:major": "standard-version --release-as major --no-verify",
