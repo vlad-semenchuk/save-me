@@ -77,23 +77,23 @@ save-me/
 └── tsconfig.build.json       # TypeScript build configuration
 ```
 
-## Changelog and Commit History
+## Changelog and Version Management
 
-This project maintains a CHANGELOG.md file to track all changes and provide memory context for Claude Code. The changelog serves two purposes:
-
-1. **Standard changelog**: Following the Keep a Changelog format for version releases
-2. **Commit history for Claude Code**: Every commit is automatically logged with timestamp, branch, and message
+This project maintains a CHANGELOG.md file following the Keep a Changelog format for tracking version releases and significant changes.
 
 ### How it works:
-- **Automatic logging**: A git post-commit hook automatically adds each commit to CHANGELOG.md
 - **Conventional commits**: Use `pnpm run commit` to create standardized commit messages
 - **Version releases**: Use `pnpm run changelog` to generate version entries from conventional commits
+- **Release types**:
+  - `pnpm run changelog:patch` - Bug fixes (0.0.x)
+  - `pnpm run changelog:minor` - New features (0.x.0)  
+  - `pnpm run changelog:major` - Breaking changes (x.0.0)
+  - `pnpm run changelog:first` - Initial release
 
 ### Important for Claude Code:
-- Always check CHANGELOG.md to understand recent project changes
-- The "Commit History" section provides context about what has been done previously
-- When making changes, reference previous related commits if applicable
+- Check CHANGELOG.md to understand the project's release history
 - Use conventional commit format (feat:, fix:, docs:, etc.) for better changelog generation
+- Update the Unreleased section when making significant changes worth noting
 
 ### Commit types:
 - `feat:` New features
