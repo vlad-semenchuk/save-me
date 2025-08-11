@@ -38,6 +38,7 @@ lerna-debug.log*
 # Claude AI
 .claude/
 .mcp.json
+CLAUDE.local.md
 
 # dotenv environment variable files
 .env

@@ -25,7 +25,13 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./apps/api/test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/api/test/jest-e2e.json",
+    "commit": "cz",
+    "changelog": "standard-version --no-verify",
+    "changelog:minor": "standard-version --release-as minor --no-verify",
+    "changelog:major": "standard-version --release-as major --no-verify",
+    "changelog:patch": "standard-version --release-as patch --no-verify",
+    "changelog:first": "standard-version --first-release --no-verify"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -49,6 +55,8 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^22.10.7",
     "@types/supertest": "^6.0.2",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
@@ -56,6 +64,7 @@
     "jest": "^30.0.0",
     "prettier": "^3.4.2",
     "source-map-support": "^0.5.21",
+    "standard-version": "^9.5.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.2",
@@ -84,5 +93,10 @@
       "<rootDir>/apps/",
       "<rootDir>/libs/"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
