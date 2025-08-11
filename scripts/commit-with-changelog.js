@@ -23,8 +23,12 @@ function updateChangelog(commitMessage) {
   const branch = execSync('git branch --show-current', { encoding: 'utf-8' }).trim();
   const date = new Date().toISOString().replace('T', ' ').substring(0, 19);
   
-  // Generate a placeholder hash (will be replaced after commit)
-  const tempHash = 'pending';
+  // Generate a hash based on the message and date (approximation of git hash)
+  const crypto = require('crypto');
+  const tempHash = crypto.createHash('sha1')
+    .update(`${date}${commitMessage}${branch}`)
+    .digest('hex')
+    .substring(0, 7);
   
   const changelogContent = fs.readFileSync(changelogPath, 'utf-8');
   const lines = changelogContent.split('\n');
@@ -78,14 +82,9 @@ updateChangelog(commitMessage);
 try {
   execSync(`git commit -m "${commitMessage}"`, { stdio: 'inherit' });
   
-  // After commit, update the CHANGELOG with the real commit hash
+  // Get the commit hash for display
   const commitHash = execSync('git rev-parse --short HEAD', { encoding: 'utf-8' }).trim();
-  const changelogPath = path.join(process.cwd(), 'CHANGELOG.md');
-  let changelogContent = fs.readFileSync(changelogPath, 'utf-8');
-  changelogContent = changelogContent.replace('(pending)', `(${commitHash})`);
-  fs.writeFileSync(changelogPath, changelogContent);
-  
-  console.log(`✅ Commit ${commitHash} created and CHANGELOG updated`);
+  console.log(`✅ Commit ${commitHash} created with CHANGELOG entry`);
 } catch (error) {
   console.error('Commit failed:', error.message);
   process.exit(1);

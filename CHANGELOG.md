@@ -32,7 +32,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Commit History (For Claude Code Memory)
 
 This section tracks individual commits to help Claude Code maintain context about project evolution.
-### 2025-08-11 12:51:42 [master] (pending)
+### 2025-08-11 12:52:54 [master] (e7d5816)
+- fix: improve commit script to avoid post-commit file changes
+
+### 2025-08-11 12:51:42 [master] (0f792e2)
 - feat: add custom commit script that updates CHANGELOG before committing
 
 ### 2025-08-11 14:46:20 [master] (94cc9d2)
