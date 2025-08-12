@@ -15,17 +15,13 @@ This is a NestJS monorepo built with TypeScript. It contains multiple applicatio
 ### Commands
 - **Install dependencies**: `pnpm install`
 - **Run in development**: 
-  - API app: `pnpm run start:dev:api`
-  - Hello World app: `pnpm run start:dev:hello-world`
-  - Default (api): `pnpm run start:dev`
+  - Default app: `pnpm run start:dev`
+  - Specific app: `pnpm run start:dev <app-name>` (e.g., `pnpm run start:dev save-me-bot`)
 - **Run in production**: 
-  - API app: `pnpm run start:prod:api`
-  - Hello World app: `pnpm run start:prod:hello-world`
-  - Default (api): `pnpm run start:prod`
+  - Default: `pnpm run start:prod`
 - **Build**: 
-  - All apps: `pnpm run build`
-  - API app: `pnpm run build:api`
-  - Hello World app: `pnpm run build:hello-world`
+  - Default app: `pnpm run build`
+  - Specific app: `pnpm run build <app-name>` (e.g., `pnpm run build save-me-bot`)
 - **Run tests**: `pnpm test`
 - **Run e2e tests**: `pnpm run test:e2e`
 - **Run test coverage**: `pnpm run test:cov`
@@ -42,17 +38,8 @@ This is a NestJS monorepo with multiple applications and shared libraries:
 ```
 save-me/
 ├── apps/                      # Application packages
-│   ├── api/                  # Main API application
-│   │   ├── app.controller.ts
-│   │   ├── app.module.ts
-│   │   ├── app.service.ts
-│   │   ├── main.ts
-│   │   ├── test/
-│   │   └── tsconfig.app.json
-│   └── hello-world/          # Hello World application
+│   └── save-me-bot/          # Save Me bot application
 │       ├── src/
-│       │   ├── hello-world.controller.ts
-│       │   ├── hello-world.service.ts
 │       │   ├── app.module.ts
 │       │   └── main.ts
 │       ├── test/
@@ -64,11 +51,19 @@ save-me/
 │   │   │   └── lib/
 │   │   │       └── validate-env.ts
 │   │   └── tsconfig.lib.json
-│   └── core/                 # Core library
+│   ├── core/                 # Core library
+│   │   ├── src/
+│   │   │   ├── index.ts
+│   │   │   └── lib/
+│   │   │       └── app-builder.ts
+│   │   └── tsconfig.lib.json
+│   └── save-me-bot/          # Save Me bot library
 │       ├── src/
 │       │   ├── index.ts
 │       │   └── lib/
-│       │       └── app-builder.ts
+│       │       ├── controllers/
+│       │       ├── save-me-bot.module.ts
+│       │       └── save-me-bot.service.ts
 │       └── tsconfig.lib.json
 ├── eslint.config.mjs         # ESLint configuration
 ├── nest-cli.json             # Nest CLI configuration
@@ -103,6 +98,11 @@ This project maintains a CHANGELOG.md file following the Keep a Changelog format
 - `refactor:` Code refactoring
 - `test:` Test additions or changes
 - `chore:` Maintenance tasks
+
+### Commit message guidelines:
+- Keep commit messages short and concise
+- Use conventional commit format without additional decorations
+- Avoid mentioning tools or automation in commit messages
 
 ## Notes
 
