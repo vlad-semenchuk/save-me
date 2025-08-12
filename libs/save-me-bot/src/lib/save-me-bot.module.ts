@@ -19,6 +19,7 @@ export class SaveMeBotModule {
         { provide: MODULE_OPTIONS, useValue: options },
         SaveMeBotService,
       ],
+      exports: [SaveMeBotService],
     };
   }
 

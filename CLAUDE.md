@@ -4,24 +4,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a NestJS monorepo built with TypeScript. It contains multiple applications and shared libraries using NestJS's monorepo architecture. NestJS is a progressive Node.js framework for building efficient, reliable and scalable server-side applications.
+This is a NestJS monorepo built with TypeScript. It contains multiple applications and shared libraries using NestJS's
+monorepo architecture. NestJS is a progressive Node.js framework for building efficient, reliable and scalable
+server-side applications.
 
 ## Development Setup
 
 ### Prerequisites
+
 - Node.js v20.17.0 or higher
 - pnpm 8.0.0 or higher
 
 ### Commands
+
 - **Install dependencies**: `pnpm install`
-- **Run in development**: 
-  - Default app: `pnpm run start:dev`
-  - Specific app: `pnpm run start:dev <app-name>` (e.g., `pnpm run start:dev save-me-bot`)
-- **Run in production**: 
-  - Default: `pnpm run start:prod`
-- **Build**: 
-  - Default app: `pnpm run build`
-  - Specific app: `pnpm run build <app-name>` (e.g., `pnpm run build save-me-bot`)
+- **Run in development**:
+    - Default app: `pnpm run start:dev`
+    - Specific app: `pnpm run start:dev <app-name>` (e.g., `pnpm run start:dev save-me-bot`)
+- **Run in production**:
+    - Default: `pnpm run start:prod`
+- **Build**:
+    - Default app: `pnpm run build`
+    - Specific app: `pnpm run build <app-name>` (e.g., `pnpm run build save-me-bot`)
 - **Run tests**: `pnpm test`
 - **Run e2e tests**: `pnpm run test:e2e`
 - **Run test coverage**: `pnpm run test:cov`
@@ -74,23 +78,27 @@ save-me/
 
 ## Changelog and Version Management
 
-This project maintains a CHANGELOG.md file following the Keep a Changelog format for tracking version releases and significant changes.
+This project maintains a CHANGELOG.md file following the Keep a Changelog format for tracking version releases and
+significant changes.
 
 ### How it works:
+
 - **Conventional commits**: Use `pnpm run commit` to create standardized commit messages
 - **Version releases**: Use `pnpm run changelog` to generate version entries from conventional commits
 - **Release types**:
-  - `pnpm run changelog:patch` - Bug fixes (0.0.x)
-  - `pnpm run changelog:minor` - New features (0.x.0)  
-  - `pnpm run changelog:major` - Breaking changes (x.0.0)
-  - `pnpm run changelog:first` - Initial release
+    - `pnpm run changelog:patch` - Bug fixes (0.0.x)
+    - `pnpm run changelog:minor` - New features (0.x.0)
+    - `pnpm run changelog:major` - Breaking changes (x.0.0)
+    - `pnpm run changelog:first` - Initial release
 
 ### Important for Claude Code:
+
 - Check CHANGELOG.md to understand the project's release history
 - Use conventional commit format (feat:, fix:, docs:, etc.) for better changelog generation
 - Update the Unreleased section when making significant changes worth noting
 
 ### Commit types:
+
 - `feat:` New features
 - `fix:` Bug fixes
 - `docs:` Documentation changes
@@ -100,11 +108,15 @@ This project maintains a CHANGELOG.md file following the Keep a Changelog format
 - `chore:` Maintenance tasks
 
 ### Commit message guidelines:
-- Keep commit messages short and concise
-- Use conventional commit format without additional decorations
-- Avoid mentioning tools or automation in commit messages
 
-## Notes
+- Keep commit messages short and concise (one line only)
+- Use conventional commit format (feat:, fix:, docs:, etc.) without additional decorations
+- NEVER mention Claude Code, automation tools, or add any attribution in commit messages
+- NEVER add multi-line commit messages with detailed descriptions
+- Example: `feat: integrate Grammy Telegram bot framework` (good)
+- Not: Long multi-line commits with bullet points and tool mentions (bad)
+
+## Notesg
 
 - The repository has Claude AI permissions configured in `.claude/settings.local.json`
 - JetBrains IDE settings are present in `.idea/`
