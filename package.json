@@ -23,7 +23,8 @@
     "changelog:minor": "standard-version --release-as minor --no-verify",
     "changelog:major": "standard-version --release-as major --no-verify",
     "changelog:patch": "standard-version --release-as patch --no-verify",
-    "changelog:first": "standard-version --first-release --no-verify"
+    "changelog:first": "standard-version --first-release --no-verify",
+    "studio:langgraph": "cd libs/shared/langgraph && npx @langchain/langgraph-cli dev"
   },
   "dependencies": {
     "@langchain/core": "^0.3.70",
@@ -44,6 +45,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.18.0",
+    "@langchain/langgraph-cli": "^0.0.58",
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",

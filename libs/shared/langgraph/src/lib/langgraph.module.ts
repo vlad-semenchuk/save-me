@@ -2,6 +2,7 @@ import { Env } from '@libs/config';
 import { DynamicModule, Module } from '@nestjs/common';
 import { MODULE_OPTIONS } from './constants';
 import { ConfigService } from './services/config.service';
+import { GraphService } from './services/graph.service';
 import { LlmService } from './services/llm.service';
 
 export type LangGraphModuleOptions = {
@@ -20,8 +21,9 @@ export class LangGraphModule {
       providers: [
         { provide: MODULE_OPTIONS, useValue: options },
         ConfigService,
+        GraphService,
       ],
-      exports: [ConfigService],
+      exports: [ConfigService, GraphService],
     };
   }
 
