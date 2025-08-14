@@ -1,3 +1,4 @@
+import { LlmService } from '@libs/shared/langgraph';
 import {
   Inject,
   Injectable,
@@ -12,6 +13,7 @@ import { SaveMeBotModuleOptions } from './save-me-bot.module';
 @Injectable()
 export class SaveMeBotService implements OnModuleInit, OnModuleDestroy {
   @Inject(MODULE_OPTIONS) private readonly options: SaveMeBotModuleOptions;
+  @Inject() private readonly llm: LlmService;
 
   private readonly logger = new Logger(SaveMeBotService.name);
   private bot: Bot;
@@ -150,6 +152,10 @@ export class SaveMeBotService implements OnModuleInit, OnModuleDestroy {
     }
 
     this.logger.debug(`Received message with URLs: ${urls.join(', ')}`);
+
+    const response = await this.llm.invoke('Hi there');
+    console.log(response);
+
     await ctx.reply(`Links detected: ${urls.join(', ')}`);
   }
 

@@ -10,7 +10,7 @@ export class ConfigService {
   get model() {
     return new ChatOpenAI({
       model: this.options.model,
-      openAIApiKey: this.options.apiKey,
+      apiKey: this.options.apiKey,
       configuration: {
         baseURL: this.options.baseUrl,
       },
