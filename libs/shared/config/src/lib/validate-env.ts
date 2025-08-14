@@ -7,23 +7,24 @@ export function validateSingleEnv<Type>(
   key: EnvKey,
   schema: ObjectPropertiesSchema<Type>,
 ): Type {
-  return validateEnv<Record<string, Type>>({ [key]: schema })[key];
+  const result = validateEnv<Record<string, Type>>({ [key]: schema });
+  return result[key];
 }
 
 export function validateEnv<TSchema>(
   schema: SchemaMap<TSchema, true>,
 ): TSchema {
-  const { error, value } = Joi.object(schema).validate(process.env, {
+  const result = Joi.object(schema).validate(process.env, {
     allowUnknown: true,
     stripUnknown: true,
     convert: true,
   });
 
-  if (error) {
-    throw new Error(`Config validation error: ${error.message}`);
+  if (result.error) {
+    throw new Error(`Config validation error: ${result.error.message}`);
   }
 
-  return value;
+  return result.value as TSchema;
 }
 
 export class Env {
