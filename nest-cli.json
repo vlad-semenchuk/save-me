@@ -1,40 +1,49 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/api",
+  "sourceRoot": "apps/save-me-bot/src",
   "monorepo": true,
-  "root": "apps/api",
+  "root": "apps/save-me-bot",
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/api/tsconfig.app.json"
+    "tsConfigPath": "apps/save-me-bot/tsconfig.app.json"
   },
   "projects": {
-    "api": {
+    "save-me-bot": {
       "type": "application",
-      "root": "apps/api",
+      "root": "apps/save-me-bot",
       "entryFile": "main",
-      "sourceRoot": "apps/api",
+      "sourceRoot": "apps/save-me-bot/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/api/tsconfig.app.json"
+        "tsConfigPath": "apps/save-me-bot/tsconfig.app.json"
       }
     },
-    "hello-world": {
-      "type": "application",
-      "root": "apps/hello-world",
-      "entryFile": "main",
-      "sourceRoot": "apps/hello-world/src",
+    "config": {
+      "type": "library",
+      "root": "libs/shared/config",
+      "entryFile": "index",
+      "sourceRoot": "libs/shared/config/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/hello-world/tsconfig.app.json"
+        "tsConfigPath": "libs/shared/config/tsconfig.lib.json"
       }
     },
     "core": {
       "type": "library",
-      "root": "libs/core",
+      "root": "libs/shared/core",
       "entryFile": "index",
-      "sourceRoot": "libs/core/src",
+      "sourceRoot": "libs/shared/core/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/core/tsconfig.lib.json"
+        "tsConfigPath": "libs/shared/core/tsconfig.lib.json"
+      }
+    },
+    "save-me-bot-lib": {
+      "type": "library",
+      "root": "libs/save-me-bot",
+      "entryFile": "index",
+      "sourceRoot": "libs/save-me-bot/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/save-me-bot/tsconfig.lib.json"
       }
     }
   }

@@ -4,7 +4,7 @@
     "moduleResolution": "nodenext",
     "resolvePackageJsonExports": true,
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -15,8 +15,15 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@libs/config": ["libs/config/src/index.ts"],
-      "@libs/core": ["libs/core/src/index.ts"]
+      "@libs/config": [
+        "libs/shared/config/src/index.ts"
+      ],
+      "@libs/core": [
+        "libs/shared/core/src/index.ts"
+      ],
+      "@libs/save-me-bot": [
+        "libs/save-me-bot/src/index.ts"
+      ]
     },
     "incremental": true,
     "skipLibCheck": true,

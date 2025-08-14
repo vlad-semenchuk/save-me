@@ -1,0 +1,1 @@
+export const MODULE_OPTIONS = Symbol('SAVE_ME_BOT_MODULE_OPTIONS');
