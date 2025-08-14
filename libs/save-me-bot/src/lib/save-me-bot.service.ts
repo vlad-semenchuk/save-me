@@ -16,14 +16,15 @@ export class SaveMeBotService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(SaveMeBotService.name);
   private bot: Bot;
 
-  async onModuleInit() {
+  onModuleInit() {
     this.bot = new Bot(this.options.botToken);
 
     // Register handlers
     this.registerHandlers();
 
-    await this.bot.start();
-    this.logger.debug('Save Me Bot is running!');
+    this.bot.start().catch((error) => {
+      this.logger.error('Failed to start Save Me Bot:', error);
+    });
   }
 
   async onModuleDestroy() {

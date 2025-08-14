@@ -16,10 +16,10 @@
     "baseUrl": "./",
     "paths": {
       "@libs/config": [
-        "libs/config/src/index.ts"
+        "libs/shared/config/src/index.ts"
       ],
       "@libs/core": [
-        "libs/core/src/index.ts"
+        "libs/shared/core/src/index.ts"
       ],
       "@libs/save-me-bot": [
         "libs/save-me-bot/src/index.ts"

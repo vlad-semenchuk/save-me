@@ -112,7 +112,9 @@ significant changes.
 - Keep commit messages short and concise (one line only)
 - Use conventional commit format (feat:, fix:, docs:, etc.) without additional decorations
 - NEVER mention Claude Code, automation tools, or add any attribution in commit messages
+- NEVER add the "🤖 Generated with [Claude Code]" footer or any Co-Authored-By lines
 - NEVER add multi-line commit messages with detailed descriptions
+- Write clean, simple commit messages without any attribution or metadata
 - Example: `feat: integrate Grammy Telegram bot framework` (good)
 - Not: Long multi-line commits with bullet points and tool mentions (bad)
 

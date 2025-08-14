@@ -21,20 +21,20 @@
     },
     "config": {
       "type": "library",
-      "root": "libs/config",
+      "root": "libs/shared/config",
       "entryFile": "index",
-      "sourceRoot": "libs/config/src",
+      "sourceRoot": "libs/shared/config/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/config/tsconfig.lib.json"
+        "tsConfigPath": "libs/shared/config/tsconfig.lib.json"
       }
     },
     "core": {
       "type": "library",
-      "root": "libs/core",
+      "root": "libs/shared/core",
       "entryFile": "index",
-      "sourceRoot": "libs/core/src",
+      "sourceRoot": "libs/shared/core/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/core/tsconfig.lib.json"
+        "tsConfigPath": "libs/shared/core/tsconfig.lib.json"
       }
     },
     "save-me-bot-lib": {
