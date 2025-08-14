@@ -1,0 +1,1 @@
+export const MODULE_OPTIONS = Symbol('LANG_GRAPH_MODULE_OPTIONS');
