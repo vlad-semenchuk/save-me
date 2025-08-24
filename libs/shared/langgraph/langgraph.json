@@ -1,9 +1,0 @@
-{
-  "node_version": "20",
-  "dockerfile_lines": [],
-  "dependencies": ["."],
-  "graphs": {
-    "simple_graph": "./src/lib/services/graph.service.ts:graph"
-  },
-  "env": "../../../.env"
-}

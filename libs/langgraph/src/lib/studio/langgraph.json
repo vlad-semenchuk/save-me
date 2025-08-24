@@ -1,0 +1,11 @@
+{
+  "node_version": "22",
+  "dockerfile_lines": [],
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "main": "../graphs/main.graph.ts:mainGraph"
+  },
+  "env": "../../../../../.env"
+}

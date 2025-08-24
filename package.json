@@ -24,7 +24,7 @@
     "changelog:major": "standard-version --release-as major --no-verify",
     "changelog:patch": "standard-version --release-as patch --no-verify",
     "changelog:first": "standard-version --first-release --no-verify",
-    "studio:langgraph": "cd libs/shared/langgraph && npx @langchain/langgraph-cli dev"
+    "studio:langgraph": "cd libs/langgraph/src/lib/studio && npx @langchain/langgraph-cli dev"
   },
   "dependencies": {
     "@distube/ytdl-core": "^4.16.12",

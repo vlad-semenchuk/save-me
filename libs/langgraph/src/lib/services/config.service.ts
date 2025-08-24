@@ -7,7 +7,7 @@ import { LangGraphModuleOptions } from '../langgraph.module';
 export class ConfigService {
   @Inject(MODULE_OPTIONS) private readonly options: LangGraphModuleOptions;
 
-  get model() {
+  get llm() {
     return new ChatOpenAI({
       model: this.options.model,
       apiKey: this.options.apiKey,

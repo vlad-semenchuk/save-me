@@ -1,9 +1,8 @@
 import { Env } from '@libs/config';
 import { DynamicModule, Module } from '@nestjs/common';
 import { MODULE_OPTIONS } from './constants';
+import { MainGraph } from './graphs';
 import { ConfigService } from './services/config.service';
-import { GraphService } from './services/graph.service';
-import { LlmService } from './services/llm.service';
 
 export type LangGraphModuleOptions = {
   baseUrl: string;
@@ -21,9 +20,9 @@ export class LangGraphModule {
       providers: [
         { provide: MODULE_OPTIONS, useValue: options },
         ConfigService,
-        GraphService,
+        MainGraph,
       ],
-      exports: [ConfigService, GraphService],
+      exports: [ConfigService, MainGraph],
     };
   }
 
@@ -35,11 +34,11 @@ export class LangGraphModule {
     });
   }
 
-  static forFeature(): DynamicModule {
-    return {
-      module: LangGraphModule,
-      providers: [LlmService],
-      exports: [LlmService],
-    };
-  }
+  // static forFeature(): DynamicModule {
+  //   return {
+  //     module: LangGraphModule,
+  //     providers: [LlmService],
+  //     exports: [LlmService],
+  //   };
+  // }
 }

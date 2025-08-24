@@ -1,5 +1,4 @@
 import { Env } from '@libs/config';
-import { LangGraphModule } from '@libs/shared/langgraph';
 import { DynamicModule, Module } from '@nestjs/common';
 import { MODULE_OPTIONS } from './constants';
 import { RootController } from './controllers/root.controller';
@@ -15,7 +14,7 @@ export class SaveMeBotModule {
   static forRoot(options: SaveMeBotModuleOptions): DynamicModule {
     return {
       module: SaveMeBotModule,
-      imports: [LangGraphModule.forFeature()],
+      // imports: [LangGraphModule.forFeature()],
       controllers: [RootController],
       providers: [
         { provide: MODULE_OPTIONS, useValue: options },
