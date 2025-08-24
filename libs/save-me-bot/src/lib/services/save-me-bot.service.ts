@@ -6,12 +6,14 @@ import {
   OnModuleInit,
 } from '@nestjs/common';
 import { Bot, CommandContext, Context, Filter } from 'grammy';
-import { MODULE_OPTIONS } from './constants';
-import { SaveMeBotModuleOptions } from './save-me-bot.module';
+import { MODULE_OPTIONS } from '../constants';
+import { SaveMeBotModuleOptions } from '../save-me-bot.module';
+import { UrlReaderService } from './url-reader.service';
 
 @Injectable()
 export class SaveMeBotService implements OnModuleInit, OnModuleDestroy {
   @Inject(MODULE_OPTIONS) private readonly options: SaveMeBotModuleOptions;
+  @Inject() private readonly urlReader: UrlReaderService;
 
   private readonly logger = new Logger(SaveMeBotService.name);
   private bot: Bot;
@@ -55,22 +57,26 @@ export class SaveMeBotService implements OnModuleInit, OnModuleDestroy {
   private async handleUrl(
     ctx: Filter<Context, 'message:entities:url'>,
   ): Promise<void> {
-    const text = ctx.msg.text || ctx.msg.caption || '';
-    const entities = ctx.msg.entities || ctx.msg.caption_entities || [];
-    const urls: string[] = [];
+    // const text = ctx.msg.text || ctx.msg.caption || '';
+    // const entities = ctx.msg.entities || ctx.msg.caption_entities || [];
+    // const urls: string[] = [];
+    //
+    // for (const entity of entities) {
+    //   if (entity.type === 'url') {
+    //     const url = text.substring(
+    //       entity.offset,
+    //       entity.offset + entity.length,
+    //     );
+    //     urls.push(url);
+    //   }
+    // }
 
-    for (const entity of entities) {
-      if (entity.type === 'url') {
-        const url = text.substring(
-          entity.offset,
-          entity.offset + entity.length,
-        );
-        urls.push(url);
-      }
-    }
+    const url = ctx.msg.link_preview_options?.url;
 
-    this.logger.debug(`Received message with URLs: ${urls.join(', ')}`);
-    await ctx.reply(`Links detected: ${urls.join(', ')}`);
+    await this.urlReader.read(url);
+
+    this.logger.debug(`Received message with URLs: ${url}`);
+    await ctx.reply(`Links detected: ${url}`);
   }
 
   private async handleText(
