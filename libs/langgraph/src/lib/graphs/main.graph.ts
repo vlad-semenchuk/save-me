@@ -1,7 +1,6 @@
 import { HumanMessage } from '@langchain/core/messages';
 import { Annotation, END, START, StateGraph } from '@langchain/langgraph';
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '../config.service';
 import { intentNode } from '../nodes';
 
 const GraphState = Annotation.Root({
@@ -16,7 +15,7 @@ export type GraphStateType = typeof GraphState.State;
 
 @Injectable()
 export class MainGraph {
-  createGraph(config: ConfigService) {
+  createGraph() {
     const processNode = (_state: GraphStateType): Partial<GraphStateType> => {
       console.log('Processing...');
       return {};
@@ -27,7 +26,7 @@ export class MainGraph {
     };
 
     const graph = new StateGraph(GraphState)
-      .addNode(intentNode.name, (state) => intentNode(state, config))
+      .addNode(intentNode.name, intentNode)
       .addNode(processNode.name, processNode)
       .addEdge(START, intentNode.name)
       .addConditionalEdges(intentNode.name, shouldProcess)

@@ -1,10 +1,9 @@
 import { HumanMessage } from '@langchain/core/messages';
-import { ConfigService } from '../config.service';
+import { llm } from '../constants';
 import { GraphStateType } from '../graphs/main.graph';
 
 export const intentNode = async (
   state: GraphStateType,
-  config: ConfigService,
 ): Promise<Partial<GraphStateType>> => {
   const userMessage = state.messages[state.messages.length - 1];
   const userText =
@@ -13,7 +12,7 @@ export const intentNode = async (
       : JSON.stringify(userMessage?.content || '');
 
   try {
-    const response = await config.llm.invoke([
+    const response = await llm.invoke([
       new HumanMessage(
         `Analyze the user's message and determine if their intent is clear.
             User message: "${userText}"

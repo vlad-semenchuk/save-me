@@ -5,7 +5,11 @@ import { LangGraphModuleOptions } from './langgraph.module';
 
 @Injectable()
 export class ConfigService {
-  @Inject(MODULE_OPTIONS) private readonly options: LangGraphModuleOptions;
+  constructor(
+    @Inject(MODULE_OPTIONS) private readonly options: LangGraphModuleOptions,
+  ) {
+    console.log('ConfigService', options);
+  }
 
   get llm() {
     return new ChatOpenAI({

@@ -1,16 +1,19 @@
+import 'dotenv/config';
+
 import { CompiledStateGraph } from '@langchain/langgraph';
 import { Type } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { ConfigService } from '../config.service';
 import { GraphStateType, MainGraph } from '../graphs/main.graph';
 import { LangGraphModule } from '../langgraph.module';
 
 // Bootstrap a minimal NestJS application context for LangGraph Studio
 async function createStudioGraph<
   T extends {
-    createGraph: (
-      config: ConfigService,
-    ) => CompiledStateGraph<GraphStateType, Partial<GraphStateType>, string>;
+    createGraph: () => CompiledStateGraph<
+      GraphStateType,
+      Partial<GraphStateType>,
+      string
+    >;
   },
 >(
   provider: Type<T>,
@@ -20,16 +23,15 @@ async function createStudioGraph<
   try {
     // Create standalone application (no HTTP server)
     const app = await NestFactory.createApplicationContext(
-      LangGraphModule.forRootFromEnv(),
+      LangGraphModule.forRoot(),
       {
         logger: ['error', 'warn'], // Minimal logging for Studio
       },
     );
 
-    const graph = app.get(provider);
-    const config = app.get(ConfigService);
+    const graph = await app.resolve(provider);
 
-    return graph.createGraph(config);
+    return graph.createGraph();
   } catch (error) {
     console.error(
       'Failed to bootstrap NestJS context for LangGraph Studio:',
@@ -40,4 +42,8 @@ async function createStudioGraph<
 }
 
 // Export for LangGraph Studio
-export const mainGraph = createStudioGraph(MainGraph);
+// export const mainGraph = createStudioGraph(MainGraph);
+
+export const mainGraph = async () => {
+  return createStudioGraph(MainGraph);
+};
