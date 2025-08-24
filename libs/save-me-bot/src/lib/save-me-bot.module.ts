@@ -2,7 +2,8 @@ import { Env } from '@libs/config';
 import { DynamicModule, Module } from '@nestjs/common';
 import { MODULE_OPTIONS } from './constants';
 import { RootController } from './controllers/root.controller';
-import { SaveMeBotService } from './save-me-bot.service';
+import { SaveMeBotService } from './services/save-me-bot.service';
+import { UrlReaderService } from './services/url-reader.service';
 
 export type SaveMeBotModuleOptions = {
   botToken: string;
@@ -18,6 +19,7 @@ export class SaveMeBotModule {
       providers: [
         { provide: MODULE_OPTIONS, useValue: options },
         SaveMeBotService,
+        UrlReaderService,
       ],
       exports: [SaveMeBotService],
     };

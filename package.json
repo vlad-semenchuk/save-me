@@ -26,6 +26,7 @@
     "changelog:first": "standard-version --first-release --no-verify"
   },
   "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
