@@ -27,6 +27,7 @@
     "studio:langgraph": "cd libs/shared/langgraph && npx @langchain/langgraph-cli dev"
   },
   "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
     "@langchain/core": "^0.3.70",
     "@langchain/langgraph": "^0.4.4",
     "@langchain/openai": "^0.6.7",
