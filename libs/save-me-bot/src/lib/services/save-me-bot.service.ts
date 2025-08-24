@@ -42,8 +42,10 @@ export class SaveMeBotService implements OnModuleInit, OnModuleDestroy {
     this.bot.command('start', (ctx) => this.handleStartCommand(ctx));
 
     // Message handlers
-    this.bot.on('message:entities:url', (ctx) => this.handleUrl(ctx));
-    this.bot.on('message:text', (ctx) => this.handleText(ctx));
+    // this.bot.on('message:entities:url', (ctx) => this.handleUrl(ctx));
+    // this.bot.on('message:text', (ctx) => this.handleText(ctx));
+
+    this.bot.on('message', (ctx) => this.handleMessage(ctx));
   }
 
   private async handleStartCommand(
@@ -52,6 +54,14 @@ export class SaveMeBotService implements OnModuleInit, OnModuleDestroy {
     await ctx.reply(
       'Welcome! I am Save Me Bot. Send me photos, audio, files, or links and I will save them for you!',
     );
+  }
+
+  private async handleMessage(ctx: Filter<Context, 'message'>): Promise<void> {
+    const data = ctx.msg;
+
+    console.log(JSON.stringify(data, null, 2));
+
+    await ctx.reply(`Received message`);
   }
 
   private async handleUrl(
