@@ -5,7 +5,7 @@
     "."
   ],
   "graphs": {
-    "main": "../graphs/main.graph.ts:mainGraph"
+    "main": "./bootstrap.ts:mainGraph"
   },
   "env": "../../../../../.env"
 }

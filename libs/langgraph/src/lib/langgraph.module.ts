@@ -1,8 +1,8 @@
 import { Env } from '@libs/config';
 import { DynamicModule, Module } from '@nestjs/common';
+import { ConfigService } from './config.service';
 import { MODULE_OPTIONS } from './constants';
 import { MainGraph } from './graphs';
-import { ConfigService } from './services/config.service';
 
 export type LangGraphModuleOptions = {
   baseUrl: string;
@@ -15,7 +15,6 @@ export class LangGraphModule {
   static forRoot(options: LangGraphModuleOptions): DynamicModule {
     return {
       module: LangGraphModule,
-      global: true,
       imports: [],
       providers: [
         { provide: MODULE_OPTIONS, useValue: options },
@@ -33,12 +32,4 @@ export class LangGraphModule {
       model: Env.string('OPENROUTER_MODEL'),
     });
   }
-
-  // static forFeature(): DynamicModule {
-  //   return {
-  //     module: LangGraphModule,
-  //     providers: [LlmService],
-  //     exports: [LlmService],
-  //   };
-  // }
 }

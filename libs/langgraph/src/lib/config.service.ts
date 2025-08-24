@@ -1,7 +1,7 @@
 import { ChatOpenAI } from '@langchain/openai';
 import { Inject, Injectable } from '@nestjs/common';
-import { MODULE_OPTIONS } from '../constants';
-import { LangGraphModuleOptions } from '../langgraph.module';
+import { MODULE_OPTIONS } from './constants';
+import { LangGraphModuleOptions } from './langgraph.module';
 
 @Injectable()
 export class ConfigService {
