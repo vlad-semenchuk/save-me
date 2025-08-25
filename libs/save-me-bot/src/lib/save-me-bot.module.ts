@@ -14,7 +14,7 @@ export class SaveMeBotModule {
   static forRoot(options: SaveMeBotModuleOptions): DynamicModule {
     return {
       module: SaveMeBotModule,
-      imports: [],
+      // imports: [LangGraphModule.forFeature()],
       controllers: [RootController],
       providers: [
         { provide: MODULE_OPTIONS, useValue: options },

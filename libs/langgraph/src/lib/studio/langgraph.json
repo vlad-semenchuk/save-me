@@ -1,0 +1,11 @@
+{
+  "node_version": "22",
+  "dockerfile_lines": [],
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "main": "./bootstrap.ts:mainGraph"
+  },
+  "env": "../../../../../.env"
+}

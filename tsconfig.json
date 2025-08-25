@@ -23,6 +23,9 @@
       ],
       "@libs/save-me-bot": [
         "libs/save-me-bot/src/index.ts"
+      ],
+      "@libs/langgraph": [
+        "libs/langgraph/src/index.ts"
       ]
     },
     "incremental": true,

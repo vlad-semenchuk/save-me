@@ -45,6 +45,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/save-me-bot/tsconfig.lib.json"
       }
+    },
+    "langgraph": {
+      "type": "library",
+      "root": "libs/shared/langgraph",
+      "entryFile": "index",
+      "sourceRoot": "libs/shared/langgraph/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/shared/langgraph/tsconfig.lib.json"
+      }
     }
   }
 }
