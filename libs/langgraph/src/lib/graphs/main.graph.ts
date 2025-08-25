@@ -1,6 +1,6 @@
 import { HumanMessage } from '@langchain/core/messages';
 import { Annotation, END, START, StateGraph } from '@langchain/langgraph';
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { intentNode } from '../nodes';
 
 const GraphState = Annotation.Root({
@@ -14,8 +14,14 @@ const GraphState = Annotation.Root({
 export type GraphStateType = typeof GraphState.State;
 
 @Injectable()
-export class MainGraph {
-  createGraph() {
+export class MainGraph implements OnModuleInit {
+  public graph!: ReturnType<typeof this.createGraph>;
+
+  onModuleInit() {
+    this.graph = this.createGraph();
+  }
+
+  private createGraph() {
     const processNode = (_state: GraphStateType): Partial<GraphStateType> => {
       console.log('Processing...');
       return {};

@@ -1,3 +1,5 @@
+import { HumanMessage } from '@langchain/core/messages';
+import { MainGraph } from '@libs/langgraph';
 import {
   Inject,
   Injectable,
@@ -14,6 +16,7 @@ import { UrlReaderService } from './url-reader.service';
 export class SaveMeBotService implements OnModuleInit, OnModuleDestroy {
   @Inject(MODULE_OPTIONS) private readonly options: SaveMeBotModuleOptions;
   @Inject() private readonly urlReader: UrlReaderService;
+  @Inject() private readonly mainGraph: MainGraph;
 
   private readonly logger = new Logger(SaveMeBotService.name);
   private bot: Bot;
@@ -57,11 +60,18 @@ export class SaveMeBotService implements OnModuleInit, OnModuleDestroy {
   }
 
   private async handleMessage(ctx: Filter<Context, 'message'>): Promise<void> {
-    const data = ctx.msg;
+    const response = await this.mainGraph.graph.invoke({
+      messages: [new HumanMessage({ content: ctx.msg.text! })],
+    });
 
-    console.log(JSON.stringify(data, null, 2));
+    const lastMessage = response.messages[response.messages.length - 1];
 
-    await ctx.reply(`Received message`);
+    const content =
+      typeof lastMessage.content === 'string'
+        ? lastMessage.content
+        : JSON.stringify(lastMessage.content);
+
+    await ctx.reply(content);
   }
 
   private async handleUrl(

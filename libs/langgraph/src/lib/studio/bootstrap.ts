@@ -9,11 +9,7 @@ import { LangGraphModule } from '../langgraph.module';
 // Bootstrap a minimal NestJS application context for LangGraph Studio
 async function createStudioGraph<
   T extends {
-    createGraph: () => CompiledStateGraph<
-      GraphStateType,
-      Partial<GraphStateType>,
-      string
-    >;
+    graph: CompiledStateGraph<GraphStateType, Partial<GraphStateType>, string>;
   },
 >(
   provider: Type<T>,
@@ -31,7 +27,7 @@ async function createStudioGraph<
 
     const graph = await app.resolve(provider);
 
-    return graph.createGraph();
+    return graph.graph;
   } catch (error) {
     console.error(
       'Failed to bootstrap NestJS context for LangGraph Studio:',
@@ -40,9 +36,6 @@ async function createStudioGraph<
     throw error;
   }
 }
-
-// Export for LangGraph Studio
-// export const mainGraph = createStudioGraph(MainGraph);
 
 export const mainGraph = async () => {
   return createStudioGraph(MainGraph);
